@@ -1,6 +1,6 @@
 package ru.rustam.test_task;
 
-public class SortАscending extends Sort {
+ class SortАscending extends Sort {
     @Override
     protected void merge(String[] src1, int src1Start, String[] src2,
                          int src2Start, String[] dest, int destStart, int size) {
@@ -50,74 +50,5 @@ public class SortАscending extends Sort {
         }
 
     }
-
-
-//    @Override
-//    Integer[] merge(Integer[] a, Integer[] b) {
-//
-//        Integer[] result = new Integer[a.length + b.length];
-//        int n = a.length;
-//        int m = b.length;
-//
-//        int i = 0, j = 0, k = 0;
-//        while (i < n && j < m) {
-//            if (a[i] <= b[j]) {
-//                result[k] = a[i];
-//                i++;
-//            } else {
-//                result[k] = b[j];
-//                j++;
-//            }
-//            k++;
-//        }
-//        while (i < n) {
-//            result[k] = a[i];
-//            i++;
-//            k++;
-//
-//        }
-//
-//        while (j < m) {
-//            result[k] = b[j];
-//            j++;
-//            k++;
-//        }
-//
-//        return result;
-//    }
-//
-//    @Override
-//    String[] merge(String[] a, String[] b) {
-//        String[] result = new String[a.length + b.length];
-//        int n = a.length;
-//        int m = b.length;
-//
-//        int i = 0, j = 0, k = 0;
-//        while (i < n && j < m) {
-//            if (a[i].compareTo(b[j]) <= 0) {
-//                result[k] = a[i];
-//                i++;
-//            } else {
-//                result[k] = b[j];
-//                j++;
-//            }
-//            k++;
-//        }
-//        while (i < n) {
-//            result[k] = a[i];
-//            i++;
-//            k++;
-//
-//        }
-//
-//        while (j < m) {
-//            result[k] = b[j];
-//            j++;
-//            k++;
-//        }
-//
-//        return result;
-//    }
-
 
 }

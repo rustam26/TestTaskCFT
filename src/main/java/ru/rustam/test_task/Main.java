@@ -1,6 +1,9 @@
 package ru.rustam.test_task;
 
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,22 +15,35 @@ public class Main {
         String sortingMode = args[1];
         String outputFileName = args[2];
         String[] inputFileNames = Arrays.copyOfRange(args, 3, args.length);
+        ReadAndWriteFile.file = new File(outputFileName);
+        try {
+            ReadAndWriteFile.fr = new FileWriter(ReadAndWriteFile.file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         if (dataType.equals("-i")) {
-            sortInteger(sortingMode,outputFileName,inputFileNames);
+            Integer[] resultInteger = sortInteger(sortingMode,outputFileName,inputFileNames);
+            ReadAndWriteFile.writeUsingFileWriter(resultInteger);
+
         } else if (dataType.equals("-s")){
-            sortString(sortingMode, outputFileName,inputFileNames);
+            String[] resultString = sortString(sortingMode, outputFileName,inputFileNames);
+            ReadAndWriteFile.writeUsingFileWriter(resultString);
         }
+
+
+
+
 
 
     }
 
-    public static void sortInteger(String sortingMode,String outputFileName,String[] inputFileNames){
+     static Integer[] sortInteger(String sortingMode,String outputFileName,String[] inputFileNames){
         List<Integer> list = new ArrayList<>();
 
         for (String fileName : inputFileNames) {
-            list.addAll(ReadFileLineByLine.readFileInteger(fileName));
+            list.addAll(ReadAndWriteFile.readFileInteger(fileName));
 
         }
         Integer[] result = list.toArray(new Integer[0]);
@@ -46,14 +62,15 @@ public class Main {
         for (Integer i : result) {
             System.out.print(i + " ");
         }
+        return result;
     }
 
 
-    public static void sortString(String sortingMode,String outputFileName,String[] inputFileNames){
+     static String[]  sortString(String sortingMode,String outputFileName,String[] inputFileNames){
         List<String> list = new ArrayList<>();
 
         for (String fileName : inputFileNames) {
-            list.addAll(ReadFileLineByLine.readFileString(fileName));
+            list.addAll(ReadAndWriteFile.readFileString(fileName));
 
         }
         String[] result = list.toArray(new String[0]);
@@ -72,6 +89,7 @@ public class Main {
         for (String i : result) {
             System.out.print(i + " ");
         }
+        return result;
     }
 
 }
