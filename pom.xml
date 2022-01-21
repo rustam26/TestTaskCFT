@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.rustam.test_task</groupId>
-    <artifactId>TestTaskCFT</artifactId>
-    <version>1.0.0</version>
+    <artifactId>sort-it</artifactId>
+    <version>1.0</version>
 
 
 
