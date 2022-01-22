@@ -11,25 +11,34 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        String dataType = args[0];
-        String sortingMode= args[1];
-        String outputFileName = args[2];
-        String[] inputFileNames = Arrays.copyOfRange(args, 3, args.length);
+        String dataType;
+        String sortingMode;
+        String outputFileName;
+        String[] inputFileNames;
+
+        dataType = args[0];
+        sortingMode = args[1];
+        outputFileName = args[2];
+        inputFileNames = Arrays.copyOfRange(args, 3, args.length);
+
 
         if (dataType == null || sortingMode == null || outputFileName == null || inputFileNames == null) {
             System.out.println("Вы ввели неправильно команду, проверьте все, пожалуйста");
             System.exit(0);
         }
 
-        if (!dataType.equals("-i") || !dataType.equals("-s") ||
-                !sortingMode.equals("-a") || !sortingMode.equals("-d")) {
-            System.out.println("Вы ввели неправильную команду типа данных или режима сортировки");
+        if (!dataType.equals("-i") && !dataType.equals("-s")) {
+            System.out.println("Вы ввели неправильную команду типа данных");
             System.exit(1);
         }
 
-
+        if (!sortingMode.equals("-a") && !sortingMode.equals("-d")) {
+            System.out.println("Вы ввели неправильную команду режима сортировки");
+            System.exit(1);
+        }
 
         ReadAndWriteFile.file = new File(outputFileName);
+
 
         try {
             ReadAndWriteFile.fr = new FileWriter(ReadAndWriteFile.file);
