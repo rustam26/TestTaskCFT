@@ -12,10 +12,25 @@ public class Main {
     public static void main(String[] args) {
 
         String dataType = args[0];
-        String sortingMode = args[1];
+        String sortingMode= args[1];
         String outputFileName = args[2];
         String[] inputFileNames = Arrays.copyOfRange(args, 3, args.length);
+
+        if (dataType == null || sortingMode == null || outputFileName == null || inputFileNames == null) {
+            System.out.println("Вы ввели неправильно команду, проверьте все, пожалуйста");
+            System.exit(0);
+        }
+
+        if (!dataType.equals("-i") || !dataType.equals("-s") ||
+                !sortingMode.equals("-a") || !sortingMode.equals("-d")) {
+            System.out.println("Вы ввели неправильную команду типа данных или режима сортировки");
+            System.exit(1);
+        }
+
+
+
         ReadAndWriteFile.file = new File(outputFileName);
+
         try {
             ReadAndWriteFile.fr = new FileWriter(ReadAndWriteFile.file);
         } catch (IOException e) {
@@ -24,22 +39,18 @@ public class Main {
 
 
         if (dataType.equals("-i")) {
-            Integer[] resultInteger = sortInteger(sortingMode,outputFileName,inputFileNames);
+            Integer[] resultInteger = sortInteger(sortingMode, outputFileName, inputFileNames);
             ReadAndWriteFile.writeUsingFileWriter(resultInteger);
 
-        } else if (dataType.equals("-s")){
-            String[] resultString = sortString(sortingMode, outputFileName,inputFileNames);
+        } else if (dataType.equals("-s")) {
+            String[] resultString = sortString(sortingMode, outputFileName, inputFileNames);
             ReadAndWriteFile.writeUsingFileWriter(resultString);
         }
 
 
-
-
-
-
     }
 
-     static Integer[] sortInteger(String sortingMode,String outputFileName,String[] inputFileNames){
+    static Integer[] sortInteger(String sortingMode, String outputFileName, String[] inputFileNames) {
         List<Integer> list = new ArrayList<>();
 
         for (String fileName : inputFileNames) {
@@ -66,7 +77,7 @@ public class Main {
     }
 
 
-     static String[]  sortString(String sortingMode,String outputFileName,String[] inputFileNames){
+    static String[] sortString(String sortingMode, String outputFileName, String[] inputFileNames) {
         List<String> list = new ArrayList<>();
 
         for (String fileName : inputFileNames) {
